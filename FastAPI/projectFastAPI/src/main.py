@@ -1,3 +1,4 @@
+from urllib import response
 from fastapi import Depends, FastAPI, HTTPException,Request, Response
 from sqlalchemy.orm import Session
 
@@ -39,23 +40,40 @@ def create_prodType (prodType: schemas.ProductTypeBase, db: Session = Depends(ge
 def create_product (*,product: schemas.ProductBase, db: Session = Depends(get_db),store_id:int,prodType_id:int):
     return crud.create_product(db=db, product=product,store_id=store_id,prodType_id=prodType_id)
 
+@app.get("/store/{store_id}", response_model=schemas.Store)
+def get_store (store_id:int,db: Session = Depends(get_db)):
+    return crud.get_store(db=db,store_id=store_id)
+
+@app.get("/store/", response_model=schemas.Store)
+def get_store_byname (store:str,db: Session = Depends(get_db)):
+    return crud.get_store_byname(db=db,name=store)
+
 @app.get("/stores/", response_model=list[schemas.Store])
 def read_stores(db: Session = Depends(get_db)):
     return crud.get_stores(db)
 
-@app.get("/stores/{store_id}", response_model=list[schemas.Store])
-def get_store (*,db: Session = Depends(get_db),store_id:int):
-    return crud.get_store(db=db,store_id=store_id)
 
-@app.get("/stores/", response_model=list[schemas.Store])
-def get_store_byname (*,db: Session = Depends(get_db),store:str):
-    return crud.get_store_byname(db=db,name=store)
+@app.get("/productType/{prodType_id}", response_model=schemas.ProductType)
+def get_prodType (prodType_id:int,db: Session = Depends(get_db)):
+    return crud.get_prodType(db=db,prodType_id=prodType_id)
+
+@app.get("/productType/", response_model=schemas.ProductType)
+def get_prodType_byname (prodType:str,db: Session = Depends(get_db)):
+    return crud.get_prodType_byname(db=db,name=prodType)
 
 @app.get("/productTypes/", response_model=list[schemas.ProductType])
 def read_prodTypes(db: Session = Depends(get_db)):
     return crud.get_prodTypes(db)
 
+@app.get("/productType/{prodType_id}/store/{store_id}", response_model=schemas.Product)
+def get_product (prodType_id:int,store_id:int,db: Session = Depends(get_db)):
+    return crud.get_product(db=db,store_id=store_id,prodType_id=prodType_id)
+
+@app.get("/products/{store_id}", response_model=list[schemas.Product])
+def get_store_products (store_id:int,db: Session = Depends(get_db)):
+    return crud.get_store_products(db=db,store_id=store_id)
+
 @app.get("/products/", response_model=list[schemas.Product])
 def read_products(db: Session = Depends(get_db)):
     return crud.get_products(db)
-    
+

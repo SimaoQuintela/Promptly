@@ -41,7 +41,7 @@ def get_prodType(db: Session, prodType_id: int):
     return db.query(models.ProductType).filter(models.ProductType.id == prodType_id).first()
 
 def get_prodType_byname(db: Session, name: str):
-    return db.query(models.Store).filter(models.Store.name == name).first()
+    return db.query(models.ProductType).filter(models.ProductType.name == name).first()
 
 def get_prodTypes(db: Session):
     return db.query(models.ProductType).all()
@@ -52,7 +52,7 @@ def get_store_products (db: Session, store_id: int):
     return db.query(models.Product).filter(models.Product.store == store_id).all()
 
 def get_product(db: Session, store_id: int,prodType_id: int):
-    return db.query(models.Store).filter(models.Store.id == store_id).filter(models.ProductType.id == prodType_id).first()
+    return db.query(models.Product).filter(models.Store.id == store_id).filter(models.ProductType.id == prodType_id).first()
 
 def get_products (db: Session):
     return db.query(models.Product).all()

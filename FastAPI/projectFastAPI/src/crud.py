@@ -57,3 +57,25 @@ def get_product(db: Session, store_id: int,prodType_id: int):
 def get_products (db: Session):
     return db.query(models.Product).all()
 
+def change_store_name(db:Session, store_id:int, new_name:str):
+    store = get_store(db=db,store_id=store_id)
+    if (store):
+        store.name = new_name
+    db.commit()
+    return store
+
+def change_product_price(db:Session,store_id:int,productType_id:int,new_price:int):
+    product = get_product(db=db,store_id=store_id,prodType_id=productType_id)
+    if (product):
+        product.price = new_price
+        db.commit()
+    return product
+
+def remove_store(db:Session, store_id:int):
+    store = get_store(db=db,store_id=store_id)
+    if (store):
+        db.delete(store)
+        db.commit()
+    return store
+
+    

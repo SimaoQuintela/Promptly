@@ -1,4 +1,5 @@
 from urllib import response
+from xxlimited import new
 from fastapi import Depends, FastAPI, HTTPException,Request, Response
 from sqlalchemy.orm import Session
 
@@ -40,6 +41,7 @@ def create_prodType (prodType: schemas.ProductTypeBase, db: Session = Depends(ge
 def create_product (*,product: schemas.ProductBase, db: Session = Depends(get_db),store_id:int,prodType_id:int):
     return crud.create_product(db=db, product=product,store_id=store_id,prodType_id=prodType_id)
 
+
 @app.get("/store/{store_id}", response_model=schemas.Store)
 def get_store (store_id:int,db: Session = Depends(get_db)):
     return crud.get_store(db=db,store_id=store_id)
@@ -77,3 +79,15 @@ def get_store_products (store_id:int,db: Session = Depends(get_db)):
 def read_products(db: Session = Depends(get_db)):
     return crud.get_products(db)
 
+
+@app.put("/store/{store_id}/change", response_model=schemas.Store)
+def change_store_name (store_id:int, name:str, db: Session = Depends(get_db)):
+    return crud.change_store_name(db=db,store_id=store_id,new_name=name)
+
+@app.put("/productType/{prodType_id}/store/{store_id}/change/{price}", response_model=schemas.Product)
+def change_product_price (store_id:int, prodType_id:int, price:int, db: Session = Depends(get_db)):
+    return crud.change_product_price(db=db,store_id=store_id,productType_id=prodType_id,new_price=price)
+
+@app.delete("/store/{store_id}/delete", response_model=schemas.Store)
+def delete_store (store_id:int, db: Session = Depends(get_db)):
+    return crud.remove_store(db=db,store_id=store_id)

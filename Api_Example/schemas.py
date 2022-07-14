@@ -6,15 +6,21 @@ class Product(BaseModel):
     price: int
     store: int
     product: int
+    class Config:
+        orm_mode = True
 
 
 class ProductType(BaseModel):
     id: int
     name: str
+    class Config:
+        orm_mode = True
     
 
 class Store(BaseModel):
     id: int
     name: str
     address: str
+    class Config:
+        orm_mode = True
     

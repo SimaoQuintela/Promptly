@@ -8,8 +8,8 @@ class Store(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True)
-    address = Column(String, default="")
-    productStore = relationship("Product", back_populates="priceStore")
+    address = Column(String, index=True)
+    products = relationship("Product", back_populates="priceStore")
 
 class Product(Base):
     __tablename__ = "store_products"
@@ -18,8 +18,8 @@ class Product(Base):
     price = Column(Integer,index=True)
     store = Column(Integer, ForeignKey("stores.id"))
     product = Column(Integer, ForeignKey("products.id"))
-    priceStore = relationship("Store", back_populates="productStore")
-    priceProduct = relationship("ProductType", back_populates="productType")
+    priceStore = relationship("Store", back_populates="products")
+    priceProduct = relationship("ProductType", back_populates="products")
     
 
 class ProductType(Base):
@@ -27,4 +27,4 @@ class ProductType(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True)
-    productType = relationship("Product", back_populates="priceProduct")
+    products = relationship("Product", back_populates="priceProduct")

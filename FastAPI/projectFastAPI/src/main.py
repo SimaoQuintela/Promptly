@@ -1,5 +1,9 @@
 from urllib import response
+<<<<<<< HEAD
 
+=======
+from xxlimited import new
+>>>>>>> 117352fb73a93c05101b824a4b0604fba06318c2
 from fastapi import Depends, FastAPI, HTTPException,Request, Response
 from sqlalchemy.orm import Session
 
@@ -92,4 +96,8 @@ def change_product_price (store_id:int, prodType_id:int, price:int, db: Session 
 
 @app.delete("/store/{store_id}/delete", response_model=schemas.Store)
 def delete_store (store_id:int, db: Session = Depends(get_db)):
+<<<<<<< HEAD
     return crud.remove_store(db=db,store_id=store_id)
+=======
+    return crud.remove_store(db=db,store_id=store_id)
+>>>>>>> 117352fb73a93c05101b824a4b0604fba06318c2

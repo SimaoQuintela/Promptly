@@ -78,4 +78,8 @@ def remove_store(db:Session, store_id:int):
         db.commit()
     return store
 
+<<<<<<< HEAD
     
+=======
+    
+>>>>>>> 117352fb73a93c05101b824a4b0604fba06318c2

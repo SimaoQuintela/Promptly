@@ -5,7 +5,7 @@ from pydantic import BaseModel
 class Shopping(BaseModel):
     id: int
     name: str
-    address: Union[str, None] = None
+    address: str
 
     class Config:
         orm_mode = True
@@ -14,8 +14,8 @@ class Shopping(BaseModel):
 
 class Store(BaseModel):
     id: int
-    name: Union[str, None] = None 
-    located_on: str
+    name: str
+    located_on: Union[str, None] =  None
 
     class Config:
         orm_mode = True
@@ -23,8 +23,9 @@ class Store(BaseModel):
 
 class Employee(BaseModel):
     id: int
-    name: Union[str, None] = None
-    working_on: str
+    name: str
+    working_on: Union[str, None] = None
+    located_on: Union[str, None] = None
 
     class Config:
         orm_mode = True

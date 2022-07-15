@@ -17,7 +17,7 @@ class Store(Base):
     __tablename__ = "stores"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, index=True)
+    name = Column(String, unique=False, index=True)
     located_on = Column(String, ForeignKey("shoppings.name"))
 
     def __repr__(self):
@@ -29,6 +29,7 @@ class Employee(Base):
     id = Column(Integer, primary_key = True, index = True)
     name = Column(String, index = True)
     working_on = Column(String, ForeignKey("stores.name"))
+    located_on = Column(String, ForeignKey("stores.located_on"))
 
     def __repr__(self):
         return f"<Employee id: {self.id} name: {self.name} working_on: {self.address}"

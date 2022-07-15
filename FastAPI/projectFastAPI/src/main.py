@@ -1,16 +1,10 @@
 from urllib import response
-<<<<<<< HEAD
-
-=======
 from xxlimited import new
->>>>>>> 117352fb73a93c05101b824a4b0604fba06318c2
 from fastapi import Depends, FastAPI, HTTPException,Request, Response
 from sqlalchemy.orm import Session
 
-import crud, models, schemas
-from database import SessionLocal, engine
-
-from typing import List
+from . import crud, models, schemas
+from .database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -56,7 +50,7 @@ def get_store (store_id:int,db: Session = Depends(get_db)):
 def get_store_byname (store:str,db: Session = Depends(get_db)):
     return crud.get_store_byname(db=db,name=store)
 
-@app.get("/stores/", response_model=List[schemas.Store])
+@app.get("/stores/", response_model=list[schemas.Store])
 def read_stores(db: Session = Depends(get_db)):
     return crud.get_stores(db)
 
@@ -69,7 +63,7 @@ def get_prodType (prodType_id:int,db: Session = Depends(get_db)):
 def get_prodType_byname (prodType:str,db: Session = Depends(get_db)):
     return crud.get_prodType_byname(db=db,name=prodType)
 
-@app.get("/productTypes/", response_model=List[schemas.ProductType])
+@app.get("/productTypes/", response_model=list[schemas.ProductType])
 def read_prodTypes(db: Session = Depends(get_db)):
     return crud.get_prodTypes(db)
 
@@ -77,11 +71,11 @@ def read_prodTypes(db: Session = Depends(get_db)):
 def get_product (prodType_id:int,store_id:int,db: Session = Depends(get_db)):
     return crud.get_product(db=db,store_id=store_id,prodType_id=prodType_id)
 
-@app.get("/products/{store_id}", response_model=List[schemas.Product])
+@app.get("/products/{store_id}", response_model=list[schemas.Product])
 def get_store_products (store_id:int,db: Session = Depends(get_db)):
     return crud.get_store_products(db=db,store_id=store_id)
 
-@app.get("/products/", response_model=List[schemas.Product])
+@app.get("/products/", response_model=list[schemas.Product])
 def read_products(db: Session = Depends(get_db)):
     return crud.get_products(db)
 
@@ -96,8 +90,4 @@ def change_product_price (store_id:int, prodType_id:int, price:int, db: Session 
 
 @app.delete("/store/{store_id}/delete", response_model=schemas.Store)
 def delete_store (store_id:int, db: Session = Depends(get_db)):
-<<<<<<< HEAD
     return crud.remove_store(db=db,store_id=store_id)
-=======
-    return crud.remove_store(db=db,store_id=store_id)
->>>>>>> 117352fb73a93c05101b824a4b0604fba06318c2

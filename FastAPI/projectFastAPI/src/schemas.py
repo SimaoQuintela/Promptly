@@ -1,5 +1,6 @@
 from typing import Union
 from pydantic import BaseModel
+from typing import List
 
 class ProductBase(BaseModel):
     price:int
@@ -18,7 +19,7 @@ class ProductTypeBase(BaseModel):
 
 class ProductType(ProductTypeBase):
     id: int
-    products: list[Product]= []
+    products: List[Product]= []
     class Config:
         orm_mode = True
 
@@ -28,6 +29,6 @@ class StoreBase(BaseModel):
 
 class Store(StoreBase):
     id: int
-    products: list[Product]= []
+    products: List[Product]= []
     class Config:
         orm_mode = True

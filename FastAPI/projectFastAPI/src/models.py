@@ -1,7 +1,7 @@
 from itertools import product
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
-from .database import Base
+from database import Base
 
 class Store(Base):
     __tablename__ = "stores"
@@ -9,7 +9,7 @@ class Store(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True)
     address = Column(String, index=True)
-    products = relationship("Product", back_populates="priceStore")
+    products = relationship("Product", back_populates="priceStore",cascade="all, delete, delete-orphan")
 
 class Product(Base):
     __tablename__ = "store_products"
@@ -27,4 +27,4 @@ class ProductType(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True)
-    products = relationship("Product", back_populates="priceProduct")
+    products = relationship("Product", back_populates="priceProduct",cascade="all, delete, delete-orphan")

@@ -1,4 +1,3 @@
-from email.policy import HTTP
 from http.client import HTTP_PORT
 from click import help_option
 from sqlalchemy.orm import Session
@@ -115,4 +114,4 @@ def delete_shopping(db: Session, shopping_id: int):
     else:
         raise HTTPException(detail="Shopping not found", status_code=status.HTTP_404_NOT_FOUND)    
 
-    return shopping_to_delete    
+    return shopping_to_delete

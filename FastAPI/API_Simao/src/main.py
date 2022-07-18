@@ -1,6 +1,5 @@
 from ast import List
 from fastapi import Depends, FastAPI, Request, Response
-from matplotlib.pyplot import get
 from sqlalchemy.orm import Session
 
 import crud, models, schemas
@@ -77,12 +76,12 @@ def create_employee(employee: schemas.Employee, db: Session = Depends(get_db)):
 
 
 # Update methods
-@app.put('/shopping/{shopping_id}/', response_model=schemas.Shopping)
+@app.put('/shoppings/{shopping_id}/', response_model=schemas.Shopping)
 def update_shopping_name(shopping_id: int, shopping_name: str, db: Session = Depends(get_db)):
     return crud.update_shopping_name(db=db, shopping_id=shopping_id, shopping_name=shopping_name)
 
 
 # Delete methods
-@app.delete('/shopping/{shopping_id}/', response_model=schemas.Shopping)
+@app.delete('/shoppings/{shopping_id}/', response_model=schemas.Shopping)
 def delete_shopping(shopping_id: int, db: Session = Depends(get_db)):
     return crud.delete_shopping(db=db, shopping_id=shopping_id)

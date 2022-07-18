@@ -2,10 +2,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-db_url = "sqlite:///./the_ultimate_database.db"
-
 engine = create_engine(
-    db_url,
+    "sqlite:///./the_ultimate_database.db",
     connect_args={"check_same_thread": False}
 )
 

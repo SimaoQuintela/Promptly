@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from . import models, schemas
+import models, schemas
 
 def create_store(db: Session, store: schemas.StoreBase):
     db_store = models.Store(name=store.name,address=store.address)
@@ -77,3 +77,5 @@ def remove_store(db:Session, store_id:int):
         db.delete(store)
         db.commit()
     return store
+
+    

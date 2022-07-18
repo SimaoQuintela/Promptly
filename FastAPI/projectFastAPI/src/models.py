@@ -1,7 +1,7 @@
 from itertools import product
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
-from .database import Base
+from database import Base
 
 class Store(Base):
     __tablename__ = "stores"

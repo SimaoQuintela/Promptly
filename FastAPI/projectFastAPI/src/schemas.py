@@ -25,6 +25,7 @@ class ProductType(ProductTypeBase):
 class StoreBase(BaseModel):
     name: str
     address: Union[str,None]=None
+    contact: Union[str,None]=None
 
 class Store(StoreBase):
     id: int

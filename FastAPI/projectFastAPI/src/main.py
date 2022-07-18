@@ -1,10 +1,10 @@
 from urllib import response
 from xxlimited import new
-from fastapi import Depends, FastAPI, HTTPException,Request, Response
+from fastapi import Depends, FastAPI,Request, Response
 from sqlalchemy.orm import Session
 
-import crud, models, schemas
-from database import SessionLocal, engine
+from . import crud, models, schemas
+from .database import SessionLocal, engine
 
 models.Base.metadata.create_all(bind=engine)
 

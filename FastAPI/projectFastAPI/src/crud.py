@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-import models, schemas
+from . import models, schemas
 
 def create_store(db: Session, store: schemas.StoreBase):
     db_store = models.Store(name=store.name,address=store.address)

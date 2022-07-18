@@ -14,8 +14,8 @@ class Shopping(BaseModel):
 
 class Store(BaseModel):
     id: int
-    name: str
-    located_on: Union[str, None] =  None
+    name: Union[str, None] = None
+    located_on: int
 
     class Config:
         orm_mode = True
@@ -23,9 +23,8 @@ class Store(BaseModel):
 
 class Employee(BaseModel):
     id: int
-    name: str
-    working_on: Union[str, None] = None
-    located_on: Union[str, None] = None
+    name: Union[str, None] = None
+    working_on: int
 
     class Config:
         orm_mode = True

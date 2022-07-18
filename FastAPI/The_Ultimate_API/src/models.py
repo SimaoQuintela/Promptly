@@ -18,7 +18,7 @@ class Store(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=False, index=True)
-    located_on = Column(String, ForeignKey("shoppings.name"))
+    located_on = Column(Integer, ForeignKey("shoppings.id"))
 
     def __repr__(self):
         return f"<Store id: {self.id} name: {self.name} located_on: {self.located_on}"
@@ -28,8 +28,7 @@ class Employee(Base):
 
     id = Column(Integer, primary_key = True, index = True)
     name = Column(String, index = True)
-    working_on = Column(String, ForeignKey("stores.name"))
-    located_on = Column(String, ForeignKey("stores.located_on"))
+    working_on = Column(Integer, ForeignKey("stores.id"))
 
     def __repr__(self):
         return f"<Employee id: {self.id} name: {self.name} working_on: {self.address}"

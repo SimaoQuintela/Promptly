@@ -66,14 +66,14 @@ def read_store(store_id: int, db: Session = Depends(get_db)):
 def create_shopping(shopping: schemas.Shopping, db: Session = Depends(get_db)):
     return crud.create_shopping(db=db, shopping=shopping)
 
-@app.post('/shoppings/{shopping_id}', response_model=schemas.Store)
-def create_store(shopping_id: int, store: schemas.Store, db: Session = Depends(get_db)):
+@app.post('/stores/', response_model=schemas.Store)
+def create_store(store: schemas.Store, db: Session = Depends(get_db)):
 
-    return crud.create_store(db=db, shopping_id=shopping_id, store=store)
+    return crud.create_store(db=db, store=store)
 
-@app.post('/shoppings/stores/{store_id}/', response_model=schemas.Employee)
-def create_employee(store_id: int, employee: schemas.Employee, db: Session = Depends(get_db)):
-    return crud.create_employee(db=db, store_id=store_id, employee=employee)
+@app.post('/employees/', response_model=schemas.Employee)
+def create_employee(employee: schemas.Employee, db: Session = Depends(get_db)):
+    return crud.create_employee(db=db, employee=employee)
 
 
 # Update methods

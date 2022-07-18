@@ -19,13 +19,12 @@ def create_shopping(db: Session, shopping: schemas.Shopping):
     db.refresh(new_shopping)
     return new_shopping
 
-def create_store(db: Session, shopping_id: int, store: schemas.Store):
-    shopping = read_shopping(db, shopping_id)
+def create_store(db: Session, store: schemas.Store):
     
     new_store = models.Store(
         id = store.id,
         name = store.name,
-        located_on = shopping.name
+        located_on = store.located_on
     )  
     	
     db.add(new_store)
@@ -34,14 +33,12 @@ def create_store(db: Session, shopping_id: int, store: schemas.Store):
 
     return new_store
 
-def create_employee(db: Session, store_id: int, employee: schemas.Employee):
-    store = read_store(db=db, store_id=store_id)
+def create_employee(db: Session, employee: schemas.Employee):
     
     new_employee = models.Employee(
         id = employee.id,
         name = employee.name,
-        working_on = store.name,
-        located_on = store.located_on
+        working_on = employee.working_on
     )
 
     db.add(new_employee)

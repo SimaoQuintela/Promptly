@@ -1,4 +1,3 @@
-from ast import List
 from fastapi import Depends, FastAPI, Request, Response
 from sqlalchemy.orm import Session
 

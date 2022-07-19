@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 
 import models, schema
 
+#o nome do ficheiro, apesar de conter na ponta uma query, deve no maximo bater no nome repository.
 def get_university(db: Session, uni_id: int):
     return db.query(models.University).filter(models.University.id == uni_id).first()
 

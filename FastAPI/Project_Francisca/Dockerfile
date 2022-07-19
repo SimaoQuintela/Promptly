@@ -4,6 +4,9 @@ COPY ./src app/src
 
 WORKDIR /app
 
+#considere usar algo no minimo como o requirements ou um gerenciador de virtual env
+#como o poetry por exemplo. quando se faz pip install sem espeficicar versao
+#pode acontecer de em producao a versao instalada ser diferente da local, possibilitando erros
 RUN pip3 install sqlalchemy
 RUN pip3 install fastapi
 RUN pip3 install pydantic

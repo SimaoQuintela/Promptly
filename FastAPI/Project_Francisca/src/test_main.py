@@ -17,7 +17,7 @@ engine = create_engine(
 )
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-
+#considere criar a base de dados num fixture com session escopo por exemplo
 Base.metadata.create_all(bind=engine)
 
 
@@ -33,7 +33,9 @@ app.dependency_overrides[get_db] = override_get_db
 
 client = TestClient(app)
 
-
+#testes podem ser feitos para os casos de sucesso e falha. é sempre bom termos o que pode
+#falhar e ter um teste que faz um assert do erro que acontece na api, para que, caso o erro
+#saia do esperado, pode ser que tenha acontecido outro tipo de erro ou encontrado um bug
 def test_create_store():
     response = client.post(
         "/stores/",

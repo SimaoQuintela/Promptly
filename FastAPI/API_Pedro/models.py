@@ -8,7 +8,7 @@ class Course(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True)
     university = Column(Integer, ForeignKey("university.id"))
-
+    #cautela com mistura de linguagens
     alunos = relationship("Student", back_populates="curso")
 
 class Student(Base):

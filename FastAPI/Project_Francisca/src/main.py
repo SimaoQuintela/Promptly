@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from . import crud, models, schemas
 from .database import SessionLocal, engine
 
+#considere nao criar as tabelas fora do modo teste.
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()

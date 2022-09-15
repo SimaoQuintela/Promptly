@@ -1,1 +1,2 @@
 # Promptly
+#### In this repository you can find [FastAPI](https://fastapi.tiangolo.com/) projects made by [Simão Quintela](https://github.com/SimaoQuintela), [Pedro Fernandes](https://github.com/pedromiguelf2001) and [Francisca Barros](https://github.com/fbarros86) using tools like [RabbitMQ](https://www.rabbitmq.com/), [SQLAlchemy](https://www.sqlalchemy.org/), [Pydantic](https://pydantic-docs.helpmanual.io/) and [Pytest](https://docs.pytest.org/en/7.1.x/) in order to get ready to a summer internship at [Promptly Health](https://www.promptlyhealth.com/).
